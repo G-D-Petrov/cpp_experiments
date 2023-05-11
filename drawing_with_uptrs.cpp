@@ -64,9 +64,6 @@ public:
         cout << "Move constructing " << *this << endl;
     }
 
-    void SetSuit(const Suits suit) { this->suit = suit; }
-    void SetRank(const Ranks rank) { this->rank = rank; }
-
     friend ostream& operator<<(ostream& os, const Card& card) {
         os << "Card(" << card.Rank() << ", " << card.Suit() << ")";
         return os;
