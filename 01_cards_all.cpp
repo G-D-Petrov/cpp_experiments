@@ -81,12 +81,22 @@ public:
 
 int main()
 {
-    vector<Card> deck;
-    for (size_t rank = 0; rank < static_cast<size_t>(Ranks::RANKS_COUNT); ++rank)
+    for (int i = 0; i < 100000; ++i)
     {
-        for (size_t suit = 0; suit < static_cast<size_t>(Suits::SUITS_COUNT); ++suit)
+        vector<Card> deck(52, Card(Suits::SUITS_COUNT, Ranks::RANKS_COUNT));
+        auto card_count = 0;
+        for (size_t rank = 0; rank < static_cast<size_t>(Ranks::RANKS_COUNT); ++rank)
         {
-            deck.push_back(Card(static_cast<Suits>(suit), static_cast<Ranks>(rank)));
+            for (size_t suit = 0; suit < static_cast<size_t>(Suits::SUITS_COUNT); ++suit)
+            {
+                // const auto before = std::chrono::system_clock::now();
+
+                // cout << "Creating " << static_cast<Suits>(suit) << " " << static_cast<Ranks>(rank) << endl;
+                deck[card_count++] = Card(static_cast<Suits>(suit), static_cast<Ranks>(rank));
+                // auto duration = std::chrono::system_clock::now() - before;
+
+                // cout << "It took " << duration.count() << "s" << endl << endl;
+            }
         }
     }
 
